@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran & Komitmen Puasa Sunnah Senin-Kamis</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-emerald-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <header class="bg-emerald-700 text-white shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-6 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold">🌙 Gerakan Puasa Sunnah Senin-Kamis</h1>
+            <p class="text-emerald-100 text-sm mt-1">Daftarkan diri Anda dan bangun konsistensi ibadah bersama!</p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl w-full mx-auto px-4 py-8 flex-grow">
+        
+        <section class="bg-white rounded-2xl shadow-sm border border-emerald-100 p-6 md:p-8 mb-8">
+            <h2 class="text-xl font-bold text-emerald-800 mb-4 flex items-center gap-2">
+                <span>📝</span> Form Komitmen Peserta
+            </h2>
+            <form id="pendaftaranForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1" for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" required placeholder="Contoh: Ahmad Fauzi" 
+                        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm">
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="whatsapp">No. WhatsApp / HP</label>
+                        <input type="tel" id="whatsapp" required placeholder="Contoh: 081234567890" 
+                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="target">Pilihan Rutinitas</label>
+                        <select id="target" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm bg-white">
+                            <option value="Senin Saja">Senin Saja</option>
+                            <option value="Kamis Saja">Kamis Saja</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="prodi">Program Studi</label>
+                        <select id="prodi" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm bg-white">
+                            <option value="Pendidikan Agama Islam">Pendidikan Agama Islam</option>
+                            <option value="Pendidikan Bahasa Arab">Pendidikan Bahasa Arab</option>
+                            <option value="Ilmu Al-Qur'an dan Tafsir">Ilmu Al-Qur'an dan Tafsir</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1" for="semester">Semester</label>
+                        <select id="semester" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm bg-white">
+                            <option value="Semester 1">Semester 1</option>
+                            <option value="Semester 3">Semester 3</option>
+                            <option value="Semester 5">Semester 5</option>
+                            <option value="Semester 7">Semester 7</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" 
+                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition duration-200 shadow-sm mt-2">
+                    Daftar & Gabung Komitmen
+                </button>
+            </form>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm border border-emerald-100 p-6 md:p-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-emerald-800 flex items-center gap-2">
+                        <span>👥</span> Daftar Peserta Terdaftar
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Total Bergabung: <span id="totalPeserta" class="font-bold text-emerald-700">0</span> orang</p>
+                </div>
+                <button onclick="resetData()" class="text-xs text-red-500 hover:text-red-700 border border-red-200 hover:border-red-400 px-3 py-1.5 rounded-lg transition">
+                    Reset Semua Data
+                </button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-xs text-slate-500 uppercase tracking-wider">
+                            <th class="py-3 px-4">No</th>
+                            <th class="py-3 px-4">Nama</th>
+                            <th class="py-3 px-4">WhatsApp</th>
+                            <th class="py-3 px-4">Akademik (Prodi / Sem)</th>
+                            <th class="py-3 px-4">Rutinitas</th>
+                            <th class="py-3 px-4 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelPeserta" class="divide-y divide-slate-100 text-sm">
+                        <tr>
+                            <td colspan="6" class="text-center py-6 text-slate-400 italic">Belum ada peserta yang mendaftar.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-emerald-100 mt-12 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Gerakan Puasa Sunnah Senin-Kamis. Istiqomah selalu dalam kebaikan.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", tampilkanData);
+
+        const form = document.getElementById("pendaftaranForm");
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById("nama").value.trim();
+            const whatsapp = document.getElementById("whatsapp").value.trim();
+            const target = document.getElementById("target").value;
+            const prodi = document.getElementById("prodi").value;
+            const semester = document.getElementById("semester").value;
+
+            let pesertaList = JSON.parse(localStorage.getItem("pesertaPuasa")) || [];
+            pesertaList.push({ nama, whatsapp, target, prodi, semester });
+            localStorage.setItem("pesertaPuasa", JSON.stringify(pesertaList));
+
+            form.reset();
+            tampilkanData();
+            
+            showCustomMessage("Alhamdulillah, pendaftaran berhasil disimpan!");
+        });
+
+        function tampilkanData() {
+            const tabelPeserta = document.getElementById("tabelPeserta");
+            const totalPeserta = document.getElementById("totalPeserta");
+            let pesertaList = JSON.parse(localStorage.getItem("pesertaPuasa")) || [];
+
+            totalPeserta.innerText = pesertaList.length;
+
+            if (pesertaList.length === 0) {
+                tabelPeserta.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-slate-400 italic">Belum ada peserta yang mendaftar.</td></tr>`;
+                return;
+            }
+
+            let html = "";
+            pesertaList.forEach((peserta, index) => {
+                html += `
+                    <tr class="hover:bg-emerald-50/50 transition">
+                        <td class="py-3 px-4 font-medium text-slate-500">${index + 1}</td>
+                        <td class="py-3 px-4 font-semibold text-slate-800">${escapeHtml(peserta.nama)}</td>
+                        <td class="py-3 px-4 text-slate-600">${escapeHtml(peserta.whatsapp)}</td>
+                        <td class="py-3 px-4">
+                            <div class="text-slate-800 font-medium">${escapeHtml(peserta.prodi)}</div>
+                            <div class="text-xs text-slate-500">${escapeHtml(peserta.semester)}</div>
+                        </td>
+                        <td class="py-3 px-4">
+                            <span class="bg-emerald-100 text-emerald-800 text-xs font-medium px-2.5 py-1 rounded-full inline-block">
+                                ${escapeHtml(peserta.target)}
+                            </span>
+                        </td>
+                        <td class="py-3 px-4 text-center">
+                            <button onclick="hapusPeserta(${index})" class="text-red-500 hover:text-red-700 text-xs bg-red-50 hover:bg-red-100 px-2.5 py-1 rounded-md transition">
+                                Hapus
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            tabelPeserta.innerHTML = html;
+        }
+
+        function hapusPeserta(index) {
+            if (window.confirm ? window.confirm("Apakah Anda yakin ingin menghapus data peserta ini?") : true) {
+                let pesertaList = JSON.parse(localStorage.getItem("pesertaPuasa")) || [];
+                pesertaList.splice(index, 1);
+                localStorage.setItem("pesertaPuasa", JSON.stringify(pesertaList));
+                tampilkanData();
+            }
+        }
+
+        function resetData() {
+            if (window.confirm ? window.confirm("Peringatan: Semua data peserta akan dihapus permanen! Lanjutkan?") : true) {
+                localStorage.removeItem("pesertaPuasa");
+                tampilkanData();
+            }
+        }
+
+        function showCustomMessage(msg) {
+            const div = document.createElement('div');
+            div.className = 'fixed bottom-5 right-5 bg-emerald-800 text-white text-xs px-4 py-3 rounded-xl shadow-lg z-50 transition-all duration-300';
+            div.innerText = msg;
+            document.body.appendChild(div);
+            setTimeout(() => {
+                div.style.opacity = '0';
+                setTimeout(() => div.remove(), 300);
+            }, 3000);
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
